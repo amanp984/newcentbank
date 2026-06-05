@@ -51,7 +51,7 @@ export function downloadStatementPDF(rows: Transaction[]) {
       t.reference,
       t.type === "debit" ? t.amount.toFixed(2) : "",
       t.type === "credit" ? t.amount.toFixed(2) : "",
-      t.balance.toFixed(2),
+      (t.balance ?? 0).toFixed(2),
     ]),
     styles: { fontSize: 9 },
     headStyles: { fillColor: [21, 101, 192], textColor: 255 },
