@@ -13,12 +13,21 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppTransferRouteImport } from './routes/_app.transfer'
 import { Route as AppTransactionsRouteImport } from './routes/_app.transactions'
+import { Route as AppSupportRouteImport } from './routes/_app.support'
 import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppPfmRouteImport } from './routes/_app.pfm'
+import { Route as AppPaymentsRouteImport } from './routes/_app.payments'
 import { Route as AppOpenFdRouteImport } from './routes/_app.open-fd'
 import { Route as AppMobileRechargeRouteImport } from './routes/_app.mobile-recharge'
+import { Route as AppLoansRouteImport } from './routes/_app.loans'
+import { Route as AppInvestmentsRouteImport } from './routes/_app.investments'
+import { Route as AppInsuranceRouteImport } from './routes/_app.insurance'
+import { Route as AppGovtSchemesRouteImport } from './routes/_app.govt-schemes'
+import { Route as AppDepositsRouteImport } from './routes/_app.deposits'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppCardsRouteImport } from './routes/_app.cards'
 import { Route as AppBeneficiariesRouteImport } from './routes/_app.beneficiaries'
+import { Route as AppAsbaIpoRouteImport } from './routes/_app.asba-ipo'
 import { Route as AppApplyLoanRouteImport } from './routes/_app.apply-loan'
 import { Route as AppAccountsRouteImport } from './routes/_app.accounts'
 import { Route as AppPayBillsIndexRouteImport } from './routes/_app.pay-bills.index'
@@ -47,9 +56,24 @@ const AppTransactionsRoute = AppTransactionsRouteImport.update({
   path: '/transactions',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSupportRoute = AppSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPfmRoute = AppPfmRouteImport.update({
+  id: '/pfm',
+  path: '/pfm',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPaymentsRoute = AppPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
   getParentRoute: () => AppRoute,
 } as any)
 const AppOpenFdRoute = AppOpenFdRouteImport.update({
@@ -60,6 +84,31 @@ const AppOpenFdRoute = AppOpenFdRouteImport.update({
 const AppMobileRechargeRoute = AppMobileRechargeRouteImport.update({
   id: '/mobile-recharge',
   path: '/mobile-recharge',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLoansRoute = AppLoansRouteImport.update({
+  id: '/loans',
+  path: '/loans',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInvestmentsRoute = AppInvestmentsRouteImport.update({
+  id: '/investments',
+  path: '/investments',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInsuranceRoute = AppInsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppGovtSchemesRoute = AppGovtSchemesRouteImport.update({
+  id: '/govt-schemes',
+  path: '/govt-schemes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDepositsRoute = AppDepositsRouteImport.update({
+  id: '/deposits',
+  path: '/deposits',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
@@ -75,6 +124,11 @@ const AppCardsRoute = AppCardsRouteImport.update({
 const AppBeneficiariesRoute = AppBeneficiariesRouteImport.update({
   id: '/beneficiaries',
   path: '/beneficiaries',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAsbaIpoRoute = AppAsbaIpoRouteImport.update({
+  id: '/asba-ipo',
+  path: '/asba-ipo',
   getParentRoute: () => AppRoute,
 } as any)
 const AppApplyLoanRoute = AppApplyLoanRouteImport.update({
@@ -122,12 +176,21 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accounts': typeof AppAccountsRoute
   '/apply-loan': typeof AppApplyLoanRoute
+  '/asba-ipo': typeof AppAsbaIpoRoute
   '/beneficiaries': typeof AppBeneficiariesRoute
   '/cards': typeof AppCardsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/deposits': typeof AppDepositsRoute
+  '/govt-schemes': typeof AppGovtSchemesRoute
+  '/insurance': typeof AppInsuranceRoute
+  '/investments': typeof AppInvestmentsRoute
+  '/loans': typeof AppLoansRoute
   '/mobile-recharge': typeof AppMobileRechargeRoute
   '/open-fd': typeof AppOpenFdRoute
+  '/payments': typeof AppPaymentsRoute
+  '/pfm': typeof AppPfmRoute
   '/settings': typeof AppSettingsRoute
+  '/support': typeof AppSupportRoute
   '/transactions': typeof AppTransactionsRoute
   '/transfer': typeof AppTransferRoute
   '/pay-bills/credit-card': typeof AppPayBillsCreditCardRoute
@@ -141,12 +204,21 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accounts': typeof AppAccountsRoute
   '/apply-loan': typeof AppApplyLoanRoute
+  '/asba-ipo': typeof AppAsbaIpoRoute
   '/beneficiaries': typeof AppBeneficiariesRoute
   '/cards': typeof AppCardsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/deposits': typeof AppDepositsRoute
+  '/govt-schemes': typeof AppGovtSchemesRoute
+  '/insurance': typeof AppInsuranceRoute
+  '/investments': typeof AppInvestmentsRoute
+  '/loans': typeof AppLoansRoute
   '/mobile-recharge': typeof AppMobileRechargeRoute
   '/open-fd': typeof AppOpenFdRoute
+  '/payments': typeof AppPaymentsRoute
+  '/pfm': typeof AppPfmRoute
   '/settings': typeof AppSettingsRoute
+  '/support': typeof AppSupportRoute
   '/transactions': typeof AppTransactionsRoute
   '/transfer': typeof AppTransferRoute
   '/pay-bills/credit-card': typeof AppPayBillsCreditCardRoute
@@ -162,12 +234,21 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_app/accounts': typeof AppAccountsRoute
   '/_app/apply-loan': typeof AppApplyLoanRoute
+  '/_app/asba-ipo': typeof AppAsbaIpoRoute
   '/_app/beneficiaries': typeof AppBeneficiariesRoute
   '/_app/cards': typeof AppCardsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/deposits': typeof AppDepositsRoute
+  '/_app/govt-schemes': typeof AppGovtSchemesRoute
+  '/_app/insurance': typeof AppInsuranceRoute
+  '/_app/investments': typeof AppInvestmentsRoute
+  '/_app/loans': typeof AppLoansRoute
   '/_app/mobile-recharge': typeof AppMobileRechargeRoute
   '/_app/open-fd': typeof AppOpenFdRoute
+  '/_app/payments': typeof AppPaymentsRoute
+  '/_app/pfm': typeof AppPfmRoute
   '/_app/settings': typeof AppSettingsRoute
+  '/_app/support': typeof AppSupportRoute
   '/_app/transactions': typeof AppTransactionsRoute
   '/_app/transfer': typeof AppTransferRoute
   '/_app/pay-bills/credit-card': typeof AppPayBillsCreditCardRoute
@@ -183,12 +264,21 @@ export interface FileRouteTypes {
     | '/'
     | '/accounts'
     | '/apply-loan'
+    | '/asba-ipo'
     | '/beneficiaries'
     | '/cards'
     | '/dashboard'
+    | '/deposits'
+    | '/govt-schemes'
+    | '/insurance'
+    | '/investments'
+    | '/loans'
     | '/mobile-recharge'
     | '/open-fd'
+    | '/payments'
+    | '/pfm'
     | '/settings'
+    | '/support'
     | '/transactions'
     | '/transfer'
     | '/pay-bills/credit-card'
@@ -202,12 +292,21 @@ export interface FileRouteTypes {
     | '/'
     | '/accounts'
     | '/apply-loan'
+    | '/asba-ipo'
     | '/beneficiaries'
     | '/cards'
     | '/dashboard'
+    | '/deposits'
+    | '/govt-schemes'
+    | '/insurance'
+    | '/investments'
+    | '/loans'
     | '/mobile-recharge'
     | '/open-fd'
+    | '/payments'
+    | '/pfm'
     | '/settings'
+    | '/support'
     | '/transactions'
     | '/transfer'
     | '/pay-bills/credit-card'
@@ -222,12 +321,21 @@ export interface FileRouteTypes {
     | '/_app'
     | '/_app/accounts'
     | '/_app/apply-loan'
+    | '/_app/asba-ipo'
     | '/_app/beneficiaries'
     | '/_app/cards'
     | '/_app/dashboard'
+    | '/_app/deposits'
+    | '/_app/govt-schemes'
+    | '/_app/insurance'
+    | '/_app/investments'
+    | '/_app/loans'
     | '/_app/mobile-recharge'
     | '/_app/open-fd'
+    | '/_app/payments'
+    | '/_app/pfm'
     | '/_app/settings'
+    | '/_app/support'
     | '/_app/transactions'
     | '/_app/transfer'
     | '/_app/pay-bills/credit-card'
@@ -273,11 +381,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTransactionsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/support': {
+      id: '/_app/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof AppSupportRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/settings': {
       id: '/_app/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pfm': {
+      id: '/_app/pfm'
+      path: '/pfm'
+      fullPath: '/pfm'
+      preLoaderRoute: typeof AppPfmRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/payments': {
+      id: '/_app/payments'
+      path: '/payments'
+      fullPath: '/payments'
+      preLoaderRoute: typeof AppPaymentsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/open-fd': {
@@ -292,6 +421,41 @@ declare module '@tanstack/react-router' {
       path: '/mobile-recharge'
       fullPath: '/mobile-recharge'
       preLoaderRoute: typeof AppMobileRechargeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/loans': {
+      id: '/_app/loans'
+      path: '/loans'
+      fullPath: '/loans'
+      preLoaderRoute: typeof AppLoansRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/investments': {
+      id: '/_app/investments'
+      path: '/investments'
+      fullPath: '/investments'
+      preLoaderRoute: typeof AppInvestmentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/insurance': {
+      id: '/_app/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof AppInsuranceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/govt-schemes': {
+      id: '/_app/govt-schemes'
+      path: '/govt-schemes'
+      fullPath: '/govt-schemes'
+      preLoaderRoute: typeof AppGovtSchemesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/deposits': {
+      id: '/_app/deposits'
+      path: '/deposits'
+      fullPath: '/deposits'
+      preLoaderRoute: typeof AppDepositsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/dashboard': {
@@ -313,6 +477,13 @@ declare module '@tanstack/react-router' {
       path: '/beneficiaries'
       fullPath: '/beneficiaries'
       preLoaderRoute: typeof AppBeneficiariesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/asba-ipo': {
+      id: '/_app/asba-ipo'
+      path: '/asba-ipo'
+      fullPath: '/asba-ipo'
+      preLoaderRoute: typeof AppAsbaIpoRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/apply-loan': {
@@ -377,12 +548,21 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAccountsRoute: typeof AppAccountsRoute
   AppApplyLoanRoute: typeof AppApplyLoanRoute
+  AppAsbaIpoRoute: typeof AppAsbaIpoRoute
   AppBeneficiariesRoute: typeof AppBeneficiariesRoute
   AppCardsRoute: typeof AppCardsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppDepositsRoute: typeof AppDepositsRoute
+  AppGovtSchemesRoute: typeof AppGovtSchemesRoute
+  AppInsuranceRoute: typeof AppInsuranceRoute
+  AppInvestmentsRoute: typeof AppInvestmentsRoute
+  AppLoansRoute: typeof AppLoansRoute
   AppMobileRechargeRoute: typeof AppMobileRechargeRoute
   AppOpenFdRoute: typeof AppOpenFdRoute
+  AppPaymentsRoute: typeof AppPaymentsRoute
+  AppPfmRoute: typeof AppPfmRoute
   AppSettingsRoute: typeof AppSettingsRoute
+  AppSupportRoute: typeof AppSupportRoute
   AppTransactionsRoute: typeof AppTransactionsRoute
   AppTransferRoute: typeof AppTransferRoute
   AppPayBillsCreditCardRoute: typeof AppPayBillsCreditCardRoute
@@ -396,12 +576,21 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAccountsRoute: AppAccountsRoute,
   AppApplyLoanRoute: AppApplyLoanRoute,
+  AppAsbaIpoRoute: AppAsbaIpoRoute,
   AppBeneficiariesRoute: AppBeneficiariesRoute,
   AppCardsRoute: AppCardsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppDepositsRoute: AppDepositsRoute,
+  AppGovtSchemesRoute: AppGovtSchemesRoute,
+  AppInsuranceRoute: AppInsuranceRoute,
+  AppInvestmentsRoute: AppInvestmentsRoute,
+  AppLoansRoute: AppLoansRoute,
   AppMobileRechargeRoute: AppMobileRechargeRoute,
   AppOpenFdRoute: AppOpenFdRoute,
+  AppPaymentsRoute: AppPaymentsRoute,
+  AppPfmRoute: AppPfmRoute,
   AppSettingsRoute: AppSettingsRoute,
+  AppSupportRoute: AppSupportRoute,
   AppTransactionsRoute: AppTransactionsRoute,
   AppTransferRoute: AppTransferRoute,
   AppPayBillsCreditCardRoute: AppPayBillsCreditCardRoute,
