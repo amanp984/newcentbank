@@ -13,8 +13,20 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppTransferRouteImport } from './routes/_app.transfer'
 import { Route as AppTransactionsRouteImport } from './routes/_app.transactions'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppOpenFdRouteImport } from './routes/_app.open-fd'
+import { Route as AppMobileRechargeRouteImport } from './routes/_app.mobile-recharge'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppCardsRouteImport } from './routes/_app.cards'
 import { Route as AppBeneficiariesRouteImport } from './routes/_app.beneficiaries'
+import { Route as AppApplyLoanRouteImport } from './routes/_app.apply-loan'
+import { Route as AppAccountsRouteImport } from './routes/_app.accounts'
+import { Route as AppPayBillsIndexRouteImport } from './routes/_app.pay-bills.index'
+import { Route as AppPayBillsWaterRouteImport } from './routes/_app.pay-bills.water'
+import { Route as AppPayBillsMobileRouteImport } from './routes/_app.pay-bills.mobile'
+import { Route as AppPayBillsGasRouteImport } from './routes/_app.pay-bills.gas'
+import { Route as AppPayBillsElectricityRouteImport } from './routes/_app.pay-bills.electricity'
+import { Route as AppPayBillsCreditCardRouteImport } from './routes/_app.pay-bills.credit-card'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -35,9 +47,29 @@ const AppTransactionsRoute = AppTransactionsRouteImport.update({
   path: '/transactions',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOpenFdRoute = AppOpenFdRouteImport.update({
+  id: '/open-fd',
+  path: '/open-fd',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMobileRechargeRoute = AppMobileRechargeRouteImport.update({
+  id: '/mobile-recharge',
+  path: '/mobile-recharge',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCardsRoute = AppCardsRouteImport.update({
+  id: '/cards',
+  path: '/cards',
   getParentRoute: () => AppRoute,
 } as any)
 const AppBeneficiariesRoute = AppBeneficiariesRouteImport.update({
@@ -45,48 +77,165 @@ const AppBeneficiariesRoute = AppBeneficiariesRouteImport.update({
   path: '/beneficiaries',
   getParentRoute: () => AppRoute,
 } as any)
+const AppApplyLoanRoute = AppApplyLoanRouteImport.update({
+  id: '/apply-loan',
+  path: '/apply-loan',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAccountsRoute = AppAccountsRouteImport.update({
+  id: '/accounts',
+  path: '/accounts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayBillsIndexRoute = AppPayBillsIndexRouteImport.update({
+  id: '/pay-bills/',
+  path: '/pay-bills/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayBillsWaterRoute = AppPayBillsWaterRouteImport.update({
+  id: '/pay-bills/water',
+  path: '/pay-bills/water',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayBillsMobileRoute = AppPayBillsMobileRouteImport.update({
+  id: '/pay-bills/mobile',
+  path: '/pay-bills/mobile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayBillsGasRoute = AppPayBillsGasRouteImport.update({
+  id: '/pay-bills/gas',
+  path: '/pay-bills/gas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayBillsElectricityRoute = AppPayBillsElectricityRouteImport.update({
+  id: '/pay-bills/electricity',
+  path: '/pay-bills/electricity',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayBillsCreditCardRoute = AppPayBillsCreditCardRouteImport.update({
+  id: '/pay-bills/credit-card',
+  path: '/pay-bills/credit-card',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accounts': typeof AppAccountsRoute
+  '/apply-loan': typeof AppApplyLoanRoute
   '/beneficiaries': typeof AppBeneficiariesRoute
+  '/cards': typeof AppCardsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/mobile-recharge': typeof AppMobileRechargeRoute
+  '/open-fd': typeof AppOpenFdRoute
+  '/settings': typeof AppSettingsRoute
   '/transactions': typeof AppTransactionsRoute
   '/transfer': typeof AppTransferRoute
+  '/pay-bills/credit-card': typeof AppPayBillsCreditCardRoute
+  '/pay-bills/electricity': typeof AppPayBillsElectricityRoute
+  '/pay-bills/gas': typeof AppPayBillsGasRoute
+  '/pay-bills/mobile': typeof AppPayBillsMobileRoute
+  '/pay-bills/water': typeof AppPayBillsWaterRoute
+  '/pay-bills/': typeof AppPayBillsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accounts': typeof AppAccountsRoute
+  '/apply-loan': typeof AppApplyLoanRoute
   '/beneficiaries': typeof AppBeneficiariesRoute
+  '/cards': typeof AppCardsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/mobile-recharge': typeof AppMobileRechargeRoute
+  '/open-fd': typeof AppOpenFdRoute
+  '/settings': typeof AppSettingsRoute
   '/transactions': typeof AppTransactionsRoute
   '/transfer': typeof AppTransferRoute
+  '/pay-bills/credit-card': typeof AppPayBillsCreditCardRoute
+  '/pay-bills/electricity': typeof AppPayBillsElectricityRoute
+  '/pay-bills/gas': typeof AppPayBillsGasRoute
+  '/pay-bills/mobile': typeof AppPayBillsMobileRoute
+  '/pay-bills/water': typeof AppPayBillsWaterRoute
+  '/pay-bills': typeof AppPayBillsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/accounts': typeof AppAccountsRoute
+  '/_app/apply-loan': typeof AppApplyLoanRoute
   '/_app/beneficiaries': typeof AppBeneficiariesRoute
+  '/_app/cards': typeof AppCardsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/mobile-recharge': typeof AppMobileRechargeRoute
+  '/_app/open-fd': typeof AppOpenFdRoute
+  '/_app/settings': typeof AppSettingsRoute
   '/_app/transactions': typeof AppTransactionsRoute
   '/_app/transfer': typeof AppTransferRoute
+  '/_app/pay-bills/credit-card': typeof AppPayBillsCreditCardRoute
+  '/_app/pay-bills/electricity': typeof AppPayBillsElectricityRoute
+  '/_app/pay-bills/gas': typeof AppPayBillsGasRoute
+  '/_app/pay-bills/mobile': typeof AppPayBillsMobileRoute
+  '/_app/pay-bills/water': typeof AppPayBillsWaterRoute
+  '/_app/pay-bills/': typeof AppPayBillsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/accounts'
+    | '/apply-loan'
     | '/beneficiaries'
+    | '/cards'
     | '/dashboard'
+    | '/mobile-recharge'
+    | '/open-fd'
+    | '/settings'
     | '/transactions'
     | '/transfer'
+    | '/pay-bills/credit-card'
+    | '/pay-bills/electricity'
+    | '/pay-bills/gas'
+    | '/pay-bills/mobile'
+    | '/pay-bills/water'
+    | '/pay-bills/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/beneficiaries' | '/dashboard' | '/transactions' | '/transfer'
+  to:
+    | '/'
+    | '/accounts'
+    | '/apply-loan'
+    | '/beneficiaries'
+    | '/cards'
+    | '/dashboard'
+    | '/mobile-recharge'
+    | '/open-fd'
+    | '/settings'
+    | '/transactions'
+    | '/transfer'
+    | '/pay-bills/credit-card'
+    | '/pay-bills/electricity'
+    | '/pay-bills/gas'
+    | '/pay-bills/mobile'
+    | '/pay-bills/water'
+    | '/pay-bills'
   id:
     | '__root__'
     | '/'
     | '/_app'
+    | '/_app/accounts'
+    | '/_app/apply-loan'
     | '/_app/beneficiaries'
+    | '/_app/cards'
     | '/_app/dashboard'
+    | '/_app/mobile-recharge'
+    | '/_app/open-fd'
+    | '/_app/settings'
     | '/_app/transactions'
     | '/_app/transfer'
+    | '/_app/pay-bills/credit-card'
+    | '/_app/pay-bills/electricity'
+    | '/_app/pay-bills/gas'
+    | '/_app/pay-bills/mobile'
+    | '/_app/pay-bills/water'
+    | '/_app/pay-bills/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -124,11 +273,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTransactionsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/open-fd': {
+      id: '/_app/open-fd'
+      path: '/open-fd'
+      fullPath: '/open-fd'
+      preLoaderRoute: typeof AppOpenFdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/mobile-recharge': {
+      id: '/_app/mobile-recharge'
+      path: '/mobile-recharge'
+      fullPath: '/mobile-recharge'
+      preLoaderRoute: typeof AppMobileRechargeRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard': {
       id: '/_app/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/cards': {
+      id: '/_app/cards'
+      path: '/cards'
+      fullPath: '/cards'
+      preLoaderRoute: typeof AppCardsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/beneficiaries': {
@@ -138,21 +315,101 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppBeneficiariesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/apply-loan': {
+      id: '/_app/apply-loan'
+      path: '/apply-loan'
+      fullPath: '/apply-loan'
+      preLoaderRoute: typeof AppApplyLoanRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/accounts': {
+      id: '/_app/accounts'
+      path: '/accounts'
+      fullPath: '/accounts'
+      preLoaderRoute: typeof AppAccountsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pay-bills/': {
+      id: '/_app/pay-bills/'
+      path: '/pay-bills'
+      fullPath: '/pay-bills/'
+      preLoaderRoute: typeof AppPayBillsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pay-bills/water': {
+      id: '/_app/pay-bills/water'
+      path: '/pay-bills/water'
+      fullPath: '/pay-bills/water'
+      preLoaderRoute: typeof AppPayBillsWaterRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pay-bills/mobile': {
+      id: '/_app/pay-bills/mobile'
+      path: '/pay-bills/mobile'
+      fullPath: '/pay-bills/mobile'
+      preLoaderRoute: typeof AppPayBillsMobileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pay-bills/gas': {
+      id: '/_app/pay-bills/gas'
+      path: '/pay-bills/gas'
+      fullPath: '/pay-bills/gas'
+      preLoaderRoute: typeof AppPayBillsGasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pay-bills/electricity': {
+      id: '/_app/pay-bills/electricity'
+      path: '/pay-bills/electricity'
+      fullPath: '/pay-bills/electricity'
+      preLoaderRoute: typeof AppPayBillsElectricityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pay-bills/credit-card': {
+      id: '/_app/pay-bills/credit-card'
+      path: '/pay-bills/credit-card'
+      fullPath: '/pay-bills/credit-card'
+      preLoaderRoute: typeof AppPayBillsCreditCardRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAccountsRoute: typeof AppAccountsRoute
+  AppApplyLoanRoute: typeof AppApplyLoanRoute
   AppBeneficiariesRoute: typeof AppBeneficiariesRoute
+  AppCardsRoute: typeof AppCardsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppMobileRechargeRoute: typeof AppMobileRechargeRoute
+  AppOpenFdRoute: typeof AppOpenFdRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppTransactionsRoute: typeof AppTransactionsRoute
   AppTransferRoute: typeof AppTransferRoute
+  AppPayBillsCreditCardRoute: typeof AppPayBillsCreditCardRoute
+  AppPayBillsElectricityRoute: typeof AppPayBillsElectricityRoute
+  AppPayBillsGasRoute: typeof AppPayBillsGasRoute
+  AppPayBillsMobileRoute: typeof AppPayBillsMobileRoute
+  AppPayBillsWaterRoute: typeof AppPayBillsWaterRoute
+  AppPayBillsIndexRoute: typeof AppPayBillsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAccountsRoute: AppAccountsRoute,
+  AppApplyLoanRoute: AppApplyLoanRoute,
   AppBeneficiariesRoute: AppBeneficiariesRoute,
+  AppCardsRoute: AppCardsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppMobileRechargeRoute: AppMobileRechargeRoute,
+  AppOpenFdRoute: AppOpenFdRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppTransactionsRoute: AppTransactionsRoute,
   AppTransferRoute: AppTransferRoute,
+  AppPayBillsCreditCardRoute: AppPayBillsCreditCardRoute,
+  AppPayBillsElectricityRoute: AppPayBillsElectricityRoute,
+  AppPayBillsGasRoute: AppPayBillsGasRoute,
+  AppPayBillsMobileRoute: AppPayBillsMobileRoute,
+  AppPayBillsWaterRoute: AppPayBillsWaterRoute,
+  AppPayBillsIndexRoute: AppPayBillsIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
