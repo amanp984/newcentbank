@@ -20,7 +20,8 @@ function TxnsPage() {
   const [to, setTo] = useState("");
 
   const rows = useMemo(() => {
-    return TRANSACTIONS.filter((t) => {
+    const enriched = withRunningBalance(TRANSACTIONS);
+    return enriched.filter((t) => {
       if (type !== "all" && t.type !== type) return false;
       if (q && !`${t.description} ${t.reference}`.toLowerCase().includes(q.toLowerCase())) return false;
       return true;
