@@ -94,7 +94,7 @@ function LoginPage() {
           <div className="md:pl-8">
             <form onSubmit={handleSubmit} className="rounded-2xl bg-card p-7 text-foreground shadow-2xl">
               <h2 className="text-center text-xl font-semibold">Login to Personal Banking</h2>
-              <p className="mt-1 text-center text-xs text-muted-foreground">VERSION: V1.3.27</p>
+              
 
               <div className="mt-6 space-y-1.5">
                 <Label htmlFor="cif">CIF / User ID <span className="text-destructive">*</span></Label>
