@@ -42,7 +42,7 @@ function AccountsPage() {
           </div>
           <div className="text-right">
             <p className="text-xs uppercase tracking-wide text-muted-foreground">Available Balance</p>
-            <p className="font-mono text-2xl font-bold">₹ 1,48,230.75</p>
+            <p className="font-mono text-2xl font-bold">₹ {formatINR(computeBalance())}</p>
             <Badge className="mt-1 bg-success/10 text-success hover:bg-success/10">● Active</Badge>
           </div>
         </div>
