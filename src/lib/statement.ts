@@ -8,7 +8,7 @@ export function downloadStatementCSV(rows: Transaction[]) {
   rows.forEach((t) => {
     const debit = t.type === "debit" ? t.amount.toFixed(2) : "";
     const credit = t.type === "credit" ? t.amount.toFixed(2) : "";
-    lines.push([t.date, `"${t.description}"`, t.reference, debit, credit, t.balance.toFixed(2)].join(","));
+    lines.push([t.date, `"${t.description}"`, t.reference, debit, credit, (t.balance ?? 0).toFixed(2)].join(","));
   });
   const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
   triggerDownload(blob, `Statement_${Date.now()}.csv`);
@@ -51,7 +51,7 @@ export function downloadStatementPDF(rows: Transaction[]) {
       t.reference,
       t.type === "debit" ? t.amount.toFixed(2) : "",
       t.type === "credit" ? t.amount.toFixed(2) : "",
-      t.balance.toFixed(2),
+      (t.balance ?? 0).toFixed(2),
     ]),
     styles: { fontSize: 9 },
     headStyles: { fillColor: [21, 101, 192], textColor: 255 },

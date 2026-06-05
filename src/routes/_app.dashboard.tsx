@@ -3,7 +3,7 @@ import { Eye, EyeOff, FileText, CreditCard as CreditCardIcon, Settings as Settin
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CUSTOMER, TRANSACTIONS } from "@/lib/bank-data";
+import { CUSTOMER, TRANSACTIONS, computeBalance, formatINR } from "@/lib/bank-data";
 import { PageHeader } from "@/components/PageHeader";
 
 export const Route = createFileRoute("/_app/dashboard")({
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/_app/dashboard")({
 
 function Dashboard() {
   const [showBal, setShowBal] = useState(false);
-  const balance = "1,48,230.75";
+  const balance = formatINR(computeBalance());
 
   return (
     <div className="space-y-6">

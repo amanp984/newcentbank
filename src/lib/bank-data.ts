@@ -22,19 +22,29 @@ export type Transaction = {
   reference: string;
   type: "credit" | "debit";
   amount: number;
-  balance: number;
+  balance?: number;
 };
 
-export const TRANSACTIONS: Transaction[] = [
-  { id: "t1", date: "28 May 2026", description: "UPI to SWIGGY", reference: "UPI/426712345671", type: "debit", amount: 485, balance: 148230.75 },
-  { id: "t2", date: "27 May 2026", description: "Salary Credit — ABC Technologies", reference: "NEFT/ABCT456712", type: "credit", amount: 85000, balance: 148715.75 },
-  { id: "t3", date: "27 May 2026", description: "EMI Debit — Home Loan", reference: "ACH/8845213344", type: "debit", amount: 28456, balance: 63715.75 },
-  { id: "t4", date: "26 May 2026", description: "UPI to AMAZON", reference: "UPI/426712345123", type: "debit", amount: 2349, balance: 92171.75 },
-  { id: "t5", date: "25 May 2026", description: "UPI to ZOMATO", reference: "UPI/426712344889", type: "debit", amount: 620, balance: 94520.75 },
-  { id: "t6", date: "24 May 2026", description: "NEFT from MAHESH KUMAR", reference: "NEFT/HDFC2245612", type: "credit", amount: 5000, balance: 95140.75 },
-  { id: "t7", date: "23 May 2026", description: "ATM Withdrawal — Andheri", reference: "ATM/451223", type: "debit", amount: 10000, balance: 90140.75 },
-  { id: "t8", date: "22 May 2026", description: "Interest Credit", reference: "INT/202605", type: "credit", amount: 312.5, balance: 100140.75 },
-];
+export const TRANSACTIONS: Transaction[] = [];
+
+export function computeBalance(txns: Transaction[] = TRANSACTIONS): number {
+  return txns.reduce((s, t) => s + (t.type === "credit" ? t.amount : -t.amount), 0);
+}
+
+/** Input is newest-first; returns newest-first with running balance attached. */
+export function withRunningBalance(txns: Transaction[] = TRANSACTIONS): Required<Transaction>[] {
+  const oldestFirst = [...txns].reverse();
+  let running = 0;
+  const enriched = oldestFirst.map((t) => {
+    running += t.type === "credit" ? t.amount : -t.amount;
+    return { ...t, balance: running } as Required<Transaction>;
+  });
+  return enriched.reverse();
+}
+
+export function formatINR(n: number): string {
+  return n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 
 export const BENEFICIARIES = [
   {

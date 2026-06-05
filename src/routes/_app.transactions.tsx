@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PageHeader } from "@/components/PageHeader";
-import { CUSTOMER, TRANSACTIONS } from "@/lib/bank-data";
+import { CUSTOMER, TRANSACTIONS, withRunningBalance, formatINR } from "@/lib/bank-data";
 import { downloadStatementPDF, downloadStatementCSV } from "@/lib/statement";
 
 export const Route = createFileRoute("/_app/transactions")({
@@ -20,7 +20,8 @@ function TxnsPage() {
   const [to, setTo] = useState("");
 
   const rows = useMemo(() => {
-    return TRANSACTIONS.filter((t) => {
+    const enriched = withRunningBalance(TRANSACTIONS);
+    return enriched.filter((t) => {
       if (type !== "all" && t.type !== type) return false;
       if (q && !`${t.description} ${t.reference}`.toLowerCase().includes(q.toLowerCase())) return false;
       return true;
@@ -74,7 +75,7 @@ function TxnsPage() {
             </thead>
             <tbody>
               {rows.length === 0 && (
-                <tr><td colSpan={6} className="px-4 py-10 text-center text-muted-foreground">No transactions match your filters.</td></tr>
+                <tr><td colSpan={6} className="px-4 py-10 text-center text-muted-foreground">{TRANSACTIONS.length === 0 ? "No Transactions Available" : "No transactions match your filters."}</td></tr>
               )}
               {rows.map((t) => (
                 <tr key={t.id} className="border-t hover:bg-accent/40">
@@ -87,12 +88,12 @@ function TxnsPage() {
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">{t.reference}</td>
                   <td className="px-4 py-3 text-right font-semibold text-debit">
-                    {t.type === "debit" ? `₹${t.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}` : "—"}
+                    {t.type === "debit" ? `₹${formatINR(t.amount)}` : "—"}
                   </td>
                   <td className="px-4 py-3 text-right font-semibold text-success">
-                    {t.type === "credit" ? `₹${t.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}` : "—"}
+                    {t.type === "credit" ? `₹${formatINR(t.amount)}` : "—"}
                   </td>
-                  <td className="px-4 py-3 text-right font-medium">₹{t.balance.toLocaleString("en-IN", { minimumFractionDigits: 2 })}</td>
+                  <td className="px-4 py-3 text-right font-medium">₹{formatINR(t.balance)}</td>
                 </tr>
               ))}
             </tbody>
