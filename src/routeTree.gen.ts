@@ -9,38 +9,100 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppTransferRouteImport } from './routes/_app.transfer'
+import { Route as AppTransactionsRouteImport } from './routes/_app.transactions'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppBeneficiariesRouteImport } from './routes/_app.beneficiaries'
 
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppTransferRoute = AppTransferRouteImport.update({
+  id: '/transfer',
+  path: '/transfer',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTransactionsRoute = AppTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBeneficiariesRoute = AppBeneficiariesRouteImport.update({
+  id: '/beneficiaries',
+  path: '/beneficiaries',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/beneficiaries': typeof AppBeneficiariesRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/transactions': typeof AppTransactionsRoute
+  '/transfer': typeof AppTransferRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/beneficiaries': typeof AppBeneficiariesRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/transactions': typeof AppTransactionsRoute
+  '/transfer': typeof AppTransferRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/_app/beneficiaries': typeof AppBeneficiariesRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/transactions': typeof AppTransactionsRoute
+  '/_app/transfer': typeof AppTransferRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/beneficiaries'
+    | '/dashboard'
+    | '/transactions'
+    | '/transfer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/beneficiaries' | '/dashboard' | '/transactions' | '/transfer'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_app/beneficiaries'
+    | '/_app/dashboard'
+    | '/_app/transactions'
+    | '/_app/transfer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +110,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/transfer': {
+      id: '/_app/transfer'
+      path: '/transfer'
+      fullPath: '/transfer'
+      preLoaderRoute: typeof AppTransferRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/transactions': {
+      id: '/_app/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof AppTransactionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/beneficiaries': {
+      id: '/_app/beneficiaries'
+      path: '/beneficiaries'
+      fullPath: '/beneficiaries'
+      preLoaderRoute: typeof AppBeneficiariesRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppBeneficiariesRoute: typeof AppBeneficiariesRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppTransactionsRoute: typeof AppTransactionsRoute
+  AppTransferRoute: typeof AppTransferRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppBeneficiariesRoute: AppBeneficiariesRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppTransactionsRoute: AppTransactionsRoute,
+  AppTransferRoute: AppTransferRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
