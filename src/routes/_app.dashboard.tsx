@@ -13,7 +13,7 @@ export const Route = createFileRoute("/_app/dashboard")({
 
 function Dashboard() {
   const [showBal, setShowBal] = useState(false);
-  const balance = "1,48,230.75";
+  const balance = formatINR(computeBalance());
 
   return (
     <div className="space-y-6">
