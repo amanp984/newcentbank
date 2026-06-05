@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PageHeader } from "@/components/PageHeader";
-import { CUSTOMER, TRANSACTIONS } from "@/lib/bank-data";
+import { CUSTOMER, TRANSACTIONS, withRunningBalance, formatINR } from "@/lib/bank-data";
 import { downloadStatementPDF, downloadStatementCSV } from "@/lib/statement";
 
 export const Route = createFileRoute("/_app/transactions")({
