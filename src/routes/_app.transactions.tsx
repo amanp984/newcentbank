@@ -75,7 +75,7 @@ function TxnsPage() {
             </thead>
             <tbody>
               {rows.length === 0 && (
-                <tr><td colSpan={6} className="px-4 py-10 text-center text-muted-foreground">No transactions match your filters.</td></tr>
+                <tr><td colSpan={6} className="px-4 py-10 text-center text-muted-foreground">{TRANSACTIONS.length === 0 ? "No Transactions Available" : "No transactions match your filters."}</td></tr>
               )}
               {rows.map((t) => (
                 <tr key={t.id} className="border-t hover:bg-accent/40">
@@ -88,12 +88,12 @@ function TxnsPage() {
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">{t.reference}</td>
                   <td className="px-4 py-3 text-right font-semibold text-debit">
-                    {t.type === "debit" ? `₹${t.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}` : "—"}
+                    {t.type === "debit" ? `₹${formatINR(t.amount)}` : "—"}
                   </td>
                   <td className="px-4 py-3 text-right font-semibold text-success">
-                    {t.type === "credit" ? `₹${t.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}` : "—"}
+                    {t.type === "credit" ? `₹${formatINR(t.amount)}` : "—"}
                   </td>
-                  <td className="px-4 py-3 text-right font-medium">₹{t.balance.toLocaleString("en-IN", { minimumFractionDigits: 2 })}</td>
+                  <td className="px-4 py-3 text-right font-medium">₹{formatINR(t.balance)}</td>
                 </tr>
               ))}
             </tbody>
