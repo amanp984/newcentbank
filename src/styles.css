@@ -40,13 +40,13 @@
 
 :root {
   --radius: 0.625rem;
-  /* Brand — tuned to uploaded reference (vivid royal blue + soft sky bg) */
-  --primary: oklch(0.52 0.20 264);          /* ~#1E5BD8 royal blue */
+  /* Brand — sampled from uploaded dashboard reference */
+  --primary: oklch(0.47 0.20 264);          /* ~#2257C8 sampled royal blue */
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.58 0.19 260);        /* lighter royal blue */
+  --secondary: oklch(0.54 0.19 262);        /* lighter royal blue */
   --secondary-foreground: oklch(0.99 0 0);
 
-  --background: oklch(0.965 0.018 250);     /* soft sky #EAF1FB */
+  --background: oklch(0.97 0.013 257);      /* soft sky ~#EFF3FE */
   --foreground: oklch(0.20 0.02 252);
 
   --card: oklch(1 0 0);
@@ -54,7 +54,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.20 0.02 252);
 
-  --muted: oklch(0.955 0.018 250);
+  --muted: oklch(0.96 0.013 257);
   --muted-foreground: oklch(0.52 0.03 257);
   --accent: oklch(0.93 0.03 252);
   --accent-foreground: oklch(0.20 0.02 252);
@@ -67,13 +67,13 @@
 
   --border: oklch(0.90 0.025 252);
   --input: oklch(0.90 0.025 252);
-  --ring: oklch(0.52 0.20 264);
+  --ring: oklch(0.47 0.20 264);
 
-  --sidebar: oklch(0.52 0.20 264);          /* matches primary royal blue */
+  --sidebar: oklch(0.47 0.20 264);          /* matches primary royal blue */
   --sidebar-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.58 0.19 260);
+  --sidebar-accent: oklch(0.54 0.19 262);
 
-  --shadow-card: 0 1px 3px 0 oklch(0.52 0.20 264 / 0.06), 0 4px 12px -2px oklch(0.52 0.20 264 / 0.05);
+  --shadow-card: 0 1px 3px 0 oklch(0.47 0.20 264 / 0.06), 0 4px 12px -2px oklch(0.47 0.20 264 / 0.05);
 
 }
 
@@ -92,5 +92,5 @@
 
 @layer utilities {
   .bank-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; box-shadow: var(--shadow-card); }
-  .gradient-account { background: linear-gradient(135deg, #2E73E8 0%, #1E5BD8 55%, #1546B0 100%); }
+  .gradient-account { background: linear-gradient(135deg, #2E73E8 0%, #2257C8 55%, #14409E 100%); }
 }
