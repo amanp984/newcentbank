@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/bank-logo.png";
+import logoAsset from "@/assets/central-bank-logo.png.asset.json";
+const logo = logoAsset.url;
 
 export function LoadingOverlay({ duration = 900 }: { duration?: number }) {
   const [visible, setVisible] = useState(true);
