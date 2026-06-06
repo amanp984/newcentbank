@@ -29,7 +29,8 @@ function LoginPage() {
   const [cif, setCif] = useState("");
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
-  const [captcha, setCaptcha] = useState(genCaptcha);
+  const [captcha, setCaptcha] = useState("------");
+  useEffect(() => { setCaptcha(genCaptcha()); }, []);
   const [captchaInput, setCaptchaInput] = useState("");
   const [lang, setLang] = useState("en");
   const navigate = useNavigate();
