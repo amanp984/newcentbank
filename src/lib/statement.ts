@@ -30,16 +30,22 @@ export function downloadStatementCSV(rows: Transaction[]) {
   triggerDownload(blob, `Statement_${Date.now()}.csv`);
 }
 
-export function downloadStatementPDF(rows: Transaction[]) {
+export async function downloadStatementPDF(rows: Transaction[]) {
   const doc = new jsPDF();
   // Header band
   doc.setFillColor(13, 71, 161);
   doc.rect(0, 0, 210, 28, "F");
+
+  const logoData = await fetchLogoDataUrl();
+  if (logoData) {
+    try { doc.addImage(logoData, "PNG", 14, 5, 18, 18); } catch { /* noop */ }
+  }
+
   doc.setTextColor(255);
   doc.setFontSize(16);
-  doc.text("Central Bank", 14, 13);
+  doc.text("Central Bank", 36, 13);
   doc.setFontSize(10);
-  doc.text("Account Statement", 14, 20);
+  doc.text("Account Statement", 36, 20);
   doc.text(`Generated: ${new Date().toLocaleString("en-IN")}`, 196, 13, { align: "right" });
 
   // Customer block
