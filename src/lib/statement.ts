@@ -1,6 +1,22 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { CUSTOMER, type Transaction } from "./bank-data";
+import logoAsset from "@/assets/central-bank-logo.png.asset.json";
+
+async function fetchLogoDataUrl(): Promise<string | null> {
+  try {
+    const res = await fetch(logoAsset.url);
+    const blob = await res.blob();
+    return await new Promise((resolve) => {
+      const r = new FileReader();
+      r.onloadend = () => resolve(r.result as string);
+      r.onerror = () => resolve(null);
+      r.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
 
 export function downloadStatementCSV(rows: Transaction[]) {
   const headers = ["Date", "Description", "Reference", "Debit", "Credit", "Balance"];
