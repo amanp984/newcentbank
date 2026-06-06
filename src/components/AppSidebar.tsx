@@ -3,7 +3,8 @@ import {
   LayoutGrid, Wallet, ArrowLeftRight, PiggyBank, Banknote, TrendingUp, Shield, PieChart,
   FileText, Landmark, Users, Receipt, Smartphone, CreditCard, Settings, HelpCircle, LogOut, ChevronLeft, ChevronRight,
 } from "lucide-react";
-import logo from "@/assets/bank-logo.png";
+import logoAsset from "@/assets/central-bank-logo.png.asset.json";
+const logo = logoAsset.url;
 import { useAuth } from "@/lib/auth";
 import { useState } from "react";
 import { cn } from "@/lib/utils";

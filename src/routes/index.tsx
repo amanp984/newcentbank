@@ -1,11 +1,12 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Eye, EyeOff, RefreshCw, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import logo from "@/assets/bank-logo.png";
+import logoAsset from "@/assets/central-bank-logo.png.asset.json";
+const logo = logoAsset.url;
 import hero from "@/assets/login-hero.jpg";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
@@ -28,7 +29,8 @@ function LoginPage() {
   const [cif, setCif] = useState("");
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
-  const [captcha, setCaptcha] = useState(genCaptcha);
+  const [captcha, setCaptcha] = useState("------");
+  useEffect(() => { setCaptcha(genCaptcha()); }, []);
   const [captchaInput, setCaptchaInput] = useState("");
   const [lang, setLang] = useState("en");
   const navigate = useNavigate();
