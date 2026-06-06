@@ -92,5 +92,5 @@
 
 @layer utilities {
   .bank-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; box-shadow: var(--shadow-card); }
-  .gradient-account { background: linear-gradient(135deg, #2E73E8 0%, #1E5BD8 55%, #1546B0 100%); }
+  .gradient-account { background: linear-gradient(135deg, #2E73E8 0%, #2257C8 55%, #14409E 100%); }
 }
